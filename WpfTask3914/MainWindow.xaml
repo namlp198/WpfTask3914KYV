@@ -1,0 +1,122 @@
+﻿<Window x:Class="WpfTask3914.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfTask3914"
+        xmlns:localcolor="clr-namespace:WpfTask3914.Converter"
+        xmlns:localview="clr-namespace:WpfTask3914.View"
+        mc:Ignorable="d"
+        Title="MainWindow"
+        Height="300"
+        Width="650"
+        Loaded="Window_Loaded"
+        ResizeMode="NoResize">
+    <Window.Resources>
+        <localcolor:ConverterBoolToForeground x:Key="ConverterBoolToForeground" />
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="12*" />
+            <RowDefinition Height="1" />
+            <RowDefinition Height="4*" />
+            <RowDefinition Height="1" />
+            <RowDefinition Height="3*" />
+        </Grid.RowDefinitions>
+        <StackPanel Background="CornflowerBlue"
+                    Orientation="Horizontal">
+            <Label Content="{Binding StateCheck, UpdateSourceTrigger=PropertyChanged}"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Margin="5 0 0 10"
+                   FontSize="38"
+                   Foreground="White"
+                   FontWeight="SemiBold"
+                   FontStretch="Expanded"
+                   Name="lbStateCheck"
+                   />
+            <localview:CircularProgressBar Margin="10 0 0 0"/>
+        </StackPanel>
+        <!--</StackPanel>-->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3.2*" />
+                <ColumnDefinition Width="1" />
+                <ColumnDefinition Width="7*" />
+            </Grid.ColumnDefinitions>
+            <Grid Background="#FF0C3EB9">
+                <Label Content="{Binding StateResult, UpdateSourceTrigger=PropertyChanged}"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       VerticalContentAlignment="Center"
+                       HorizontalContentAlignment="Center"
+                       FontSize="20"
+                       FontStretch="Expanded"
+                       FontWeight="ExtraLight"
+                       Foreground="White"
+                       Margin="5 0 0 0"
+                       Name="lbStateResult"
+                       />
+            </Grid>
+            <Grid Grid.Column="2"
+                  Background="#FF0C3EB9">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Margin="20 0 5 0"
+                               FontSize="20"
+                               FontStretch="Expanded"
+                               FontWeight="ExtraLight"
+                               Foreground="White"
+                               Text="RESULT: "
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center" />
+                    <TextBlock Margin="5 3 0 0"
+                               x:Name="tbXmlCheckResult"
+                               FontSize="16"
+                               FontStretch="SemiExpanded"
+                               FontWeight="ExtraLight"
+                               Foreground="{Binding IsXmlCheckResult, Converter={StaticResource ConverterBoolToForeground}}"
+                               Text="{Binding JudgeXml, UpdateSourceTrigger=PropertyChanged}"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center" />
+                    <TextBlock Margin="10 3 0 0"
+                               x:Name="tbIniCheckResult"
+                               FontSize="16"
+                               FontStretch="SemiExpanded"
+                               FontWeight="ExtraLight"
+                               Foreground="{Binding IsIniCheckResult, Converter={StaticResource ConverterBoolToForeground}}"
+                               Text="{Binding JudgeIni, UpdateSourceTrigger=PropertyChanged}"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center" />
+                    <TextBlock Margin="10 3 0 0"
+                               x:Name="tbJsonCheckResult"
+                               FontSize="16"
+                               FontStretch="SemiExpanded"
+                               FontWeight="ExtraLight"
+                               Foreground="{Binding IsJsonCheckResult, Converter={StaticResource ConverterBoolToForeground}}"
+                               Text="{Binding JudgeJson, UpdateSourceTrigger=PropertyChanged}"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center" />
+                </StackPanel>
+            </Grid>
+        </Grid>
+        <StatusBar Grid.Row="4" Background="YellowGreen">
+            <Label Content="{Binding StP1, UpdateSourceTrigger=PropertyChanged}"
+                   Margin="2 0 0 0"
+                   FontSize="12"
+                   FontStretch="SemiExpanded"
+                   Name="lbP1"/>
+            <Separator />
+            <Label Content="{Binding StP2, UpdateSourceTrigger=PropertyChanged}"
+                   Margin="2 0 0 0"
+                   FontSize="12"
+                   FontStretch="SemiExpanded"
+                   Name="lbP2" />
+            <Separator />
+            <Label Content="{Binding StP3, UpdateSourceTrigger=PropertyChanged}"
+                   Margin="2 0 0 0"
+                   FontSize="12"
+                   FontStretch="SemiExpanded"
+                   Name="lbP3" />
+        </StatusBar>
+    </Grid>
+</Window>
